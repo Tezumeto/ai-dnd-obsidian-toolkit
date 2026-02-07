@@ -46,6 +46,12 @@ This repository contains a comprehensive system of AI instructions, skills, and 
 - `summary/` — Session summaries (operational data)
 - `log/` — Change logs (auto-generated)
 
+**Outside this repository (entry points):**
+- `CLAUDE.md` — Entry point for Claude (place in your working directory)
+- `GEMINI.md` — Entry point for Gemini (place in your working directory)
+
+These files should be located where you launch your AI agents, pointing to `prompts/system.md` inside this repository.
+
 ---
 
 ## 🚀 Quick Start
@@ -81,9 +87,11 @@ This repository contains a comprehensive system of AI instructions, skills, and 
    - Update paths in `prompts/system.md` if needed
 
 3. **Configure AI agents:**
-   - Point Claude Code to `CLAUDE.md` (create from template)
-   - Point Gemini to `GEMINI.md` (create from template)
-   - Use `agent_template.md` for other agents
+   - Create `CLAUDE.md` in your working directory (where you launch agents)
+   - Create `GEMINI.md` in your working directory
+   - Use `prompts/agent_template.md` as a base for these files
+   - Point each file to this repository's `prompts/system.md`
+   - Example path: `C:\YourPath\project\.llm\prompts\system.md`
 
 4. **Start using skills:**
    - Ask your AI to read the relevant skill before tasks
