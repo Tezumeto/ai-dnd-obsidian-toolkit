@@ -309,7 +309,7 @@ Ancient temple ruins entrance, overgrown with vines, misty forest surroundings, 
 ## Changelog
 
 ```markdown
-> [!changelog]
+> [!changelog]-
 > **2026-02-07 (claude):** Создана локация. Связана с [[Государство]]. Проверена география.
 ```
 

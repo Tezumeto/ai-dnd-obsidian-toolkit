@@ -350,7 +350,7 @@ Half-elf female archer, wearing blue guard tabard...
 
 При создании промптов добавь changelog в файл NPC/локации:
 ```markdown
-> [!changelog]
+> [!changelog]-
 > **2026-02-07 (claude):** Добавлен промпт для изображения.
 ```
 
