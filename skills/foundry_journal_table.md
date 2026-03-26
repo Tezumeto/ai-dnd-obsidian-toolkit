@@ -55,13 +55,14 @@ ALT_ROW_BG         = rgba(255,255,255,0.02) — фон чётных строк (
 
 ### 2. Информационный блок
 
-Используй для пояснений, легенды, системы классов и т.п.
+Используй для пояснений, легенды, системы классов, цены и т.п.
 
 ```html
 <p style="background: rgba(139,105,20,0.15); border-left: 4px solid #8B6914; padding: 8px 12px; font-size: 0.85em; color: #B8956A"><strong style="color:#E8C870">{ЗАГОЛОВОК БЛОКА}:</strong>   {СОДЕРЖИМОЕ}</p>
 ```
 
 **Пример:** `Классы заведений: I — простое | II — среднее | III — дорогое`
+**Пример:** `Цена: Порция \ Бутылка`
 
 ---
 
@@ -104,7 +105,7 @@ ALT_ROW_BG         = rgba(255,255,255,0.02) — фон чётных строк (
 
 ```html
 <tr>
-    <td style="padding:6px 10px;font-weight:bold;color:#D4C4A0;border-bottom:1px solid #3A2800"><strong>{НАЗВАНИЕ}</strong></td>
+    <td style="padding:6px 10px;color:#D4C4A0;border-bottom:1px solid #3A2800; display:flex; align-items:center; gap:6px;"><img src="{IMG_PATH}" width="24" height="24" style="border-radius:3px; flex-shrink:0;">{НАЗВАНИЕ}</td>
     <td style="padding:6px 10px;color:#C8A050;border-bottom:1px solid #3A2800">{ЗНАЧЕНИЕ}</td>
     <td style="padding:6px 10px;text-align:center;color:#C8A050;border-bottom:1px solid #3A2800">{МЕТКА}</td>
     <td style="padding:6px 10px;border-bottom:1px solid #3A2800;color:#9A8878"><em style="color:#B8A080">{АКЦЕНТ}</em> {ОПИСАНИЕ}</td>
@@ -122,7 +123,15 @@ ALT_ROW_BG         = rgba(255,255,255,0.02) — фон чётных строк (
 ### 7. Строка с @UUID (если предмет существует в Foundry)
 
 ```html
-<td style="padding:6px 10px;font-weight:bold;color:#D4C4A0;border-bottom:1px solid #3A2800"><strong>@UUID[Item.{ID}]{ {НАЗВАНИЕ} }</strong></td>
+<td style="padding:6px 10px;color:#D4C4A0;border-bottom:1px solid #3A2800; display:flex; align-items:center; gap:6px;"><img src="{IMG_PATH}" width="24" height="24" style="border-radius:3px; flex-shrink:0;">@UUID[Item.{ID}]{{НАЗВАНИЕ}}</td>
+```
+
+### 8. Путь к изображению (IMG_PATH)
+
+Если пользователь предоставляет путь к изображению предмета — используй его. Если путь неизвестен — используй placeholder:
+
+```
+modules/tezu-valtrey/assets/icons/IMG_not_found.webp
 ```
 
 ---
@@ -133,8 +142,8 @@ ALT_ROW_BG         = rgba(255,255,255,0.02) — фон чётных строк (
 
 | Колонка | Ширина | Выравн. | Цвет | Содержимое |
 |---------|--------|---------|------|------------|
-| Название | 28% | left | NAME_TEXT | Имя товара (жирный) |
-| Цена | 14% | left | ACCENT_TEXT | Цена в D&D валюте |
+| Название | 28% | left | NAME_TEXT | Иконка + имя товара |
+| Цена | 14% | left | ACCENT_TEXT | Цена в D&D валюте. За порцию \ бутылку |
 | Кл. | 8% | center | ACCENT_TEXT | Класс заведения (I–III) |
 | Вкус и описание | auto | left | BODY_TEXT | em{вкус} + описание |
 
@@ -146,7 +155,7 @@ ALT_ROW_BG         = rgba(255,255,255,0.02) — фон чётных строк (
 
 | Колонка | Ширина | Выравн. | Цвет | Содержимое |
 |---------|--------|---------|------|------------|
-| Имя | 24% | left | NAME_TEXT | Имя NPC (жирный) |
+| Имя | 24% | left | NAME_TEXT | Иконка + имя NPC |
 | Раса | 12% | left | ACCENT_TEXT | Раса |
 | Роль | 16% | left | ACCENT_TEXT | Должность / класс |
 | Описание | auto | left | BODY_TEXT | em{внешность} + характер |
@@ -157,7 +166,7 @@ ALT_ROW_BG         = rgba(255,255,255,0.02) — фон чётных строк (
 
 | Колонка | Ширина | Выравн. | Цвет | Содержимое |
 |---------|--------|---------|------|------------|
-| Задание | 28% | left | NAME_TEXT | Название квеста (жирный) |
+| Задание | 28% | left | NAME_TEXT | Иконка + название квеста |
 | Награда | 14% | left | ACCENT_TEXT | Награда в D&D валюте |
 | Сложность | 10% | center | ACCENT_TEXT | Уровень (★/★★/★★★) |
 | Описание | auto | left | BODY_TEXT | em{зацепка} + детали |
@@ -168,7 +177,7 @@ ALT_ROW_BG         = rgba(255,255,255,0.02) — фон чётных строк (
 
 | Колонка | Ширина | Выравн. | Цвет | Содержимое |
 |---------|--------|---------|------|------------|
-| Предмет | 24% | left | NAME_TEXT | Название (жирный) |
+| Предмет | 24% | left | NAME_TEXT | Иконка + название |
 | Цена | 12% | left | ACCENT_TEXT | Цена |
 | Вес | 8% | center | ACCENT_TEXT | фунты |
 | Свойства | auto | left | BODY_TEXT | em{тип/урон} + описание |
@@ -180,7 +189,7 @@ ALT_ROW_BG         = rgba(255,255,255,0.02) — фон чётных строк (
 Если ни один пресет не подходит — уточни у пользователя:
 1. Сколько колонок? (2–6)
 2. Названия колонок
-3. Какая колонка — название (жирный, NAME_TEXT)?
+3. Какая колонка — название (иконка + текст, NAME_TEXT)?
 4. Какая колонка — числовая/метка (ACCENT_TEXT)?
 5. Какая колонка — описание (BODY_TEXT)?
 6. Есть ли акцент-часть в описании (em, EMPHASIS_TEXT)?
@@ -230,7 +239,7 @@ ALT_ROW_BG         = rgba(255,255,255,0.02) — фон чётных строк (
 
 **@UUID:**
 - Если пользователь предоставляет UUID — используй формат `@UUID[Item.{ID}]{Название}`
-- Если UUID нет — просто `<strong>Название</strong>`
+- Если UUID нет — просто текст `Название` (без `<strong>`)
 
 **Чередование строк:**
 - Нечётные строки (1, 3, 5...): `<tr>`
@@ -279,5 +288,5 @@ ALT_ROW_BG         = rgba(255,255,255,0.02) — фон чётных строк (
 
 ---
 
-**Последнее обновление:** 2026-03-25
+**Последнее обновление:** 2026-03-26
 **Автор skill:** claude
